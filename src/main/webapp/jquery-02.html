@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        table {
+            margin: 50px auto 0 auto;
+            border-collapse: collapse;
+            text-align: center;
+            vertical-align: center;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            width: 100px;
+            height: 30px;
+        }
+        #header{
+            height: 20px;
+            text-align: center;
+        }
+
+        #user,#user1{
+            margin-right: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="header">
+    <span id="user"></span><a href="servlet/OutLogin">点击退出</a>
+    <span id="user1"></span><a href="/javaweb/inseret.jsp">点击添加</a>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script>
+
+    let requestURL='servlet/EmpServlet';
+
+    $(function () {
+        let header = ["empno", "ename", "job", "mgr", "hiredate", "sal", "com", "deptno", "操作"];
+
+        $.ajax({
+            url: requestURL,
+            method:'GET',
+            dataType:'json',
+            success:function (response) {
+                let $table=$("<table></table>");
+                $('body').append($table);
+                let $tr=$("<tr></tr>");
+                $("table").append($tr);
+                for (let i = 0; i <header.length; i++) {
+                    let $th= $("<th></th>");
+                    $tr.append($th);
+                    $th.html(header[i]);
+                }
+                for (let i = 0; i < response.length; i++) {
+                    let $tr1=$("<tr></tr>");
+                    $("table").append($tr1);
+                    for (let j = 0; j < header.length; j++) {
+                        let $th= $("<td></td>");
+                        $tr1.append($th);
+                        if(j==(header.length-1)){
+                            $th.html("<a href='servlet/DeleteEmpServlet?empno="+response[i][header[0]]+"'>点击刪除</a>");
+                        }else{
+                            $th.html(response[i][header[j]]);
+                        }
+                    }
+                }
+            }
+        });
+    });
+
+</script>
+</body>
+</html>

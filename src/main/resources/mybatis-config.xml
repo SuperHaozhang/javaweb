@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <properties resource="db.properties"></properties>
+
+    <!--  设置log4j配置文件  -->
+    <settings>
+        <setting name="logImpl" value="log4j2"/>
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="aggressiveLazyLoading" value="false"/>
+    </settings>
+
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>
+    </plugins>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${Driver}"/>
+                <property name="url" value="${URL}"/>
+                <property name="username" value="${User}"/>
+                <property name="password" value="${Pwd}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+
+        <!--批量注册-->
+        <package name="com.cheer.mapper"/>
+    </mappers>
+</configuration>
