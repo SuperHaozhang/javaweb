@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebFilter(filterName = "LoginStatusCheckFilter", urlPatterns = "/*", initParams = @WebInitParam(name = "ignoreURI",
-        value = "login.html;servlet/LogService;servlet/DeleteEmpServlet"))
+        value = "login.html;servlet/LogService;servlet/DeleteEmpServlet;servlet/UpdateServlet"))
 public class FirstFilter implements Filter {
     private static final Logger LOGGER = LogManager.getLogger(FirstFilter.class);
     private  String[] ignoreURI=null;

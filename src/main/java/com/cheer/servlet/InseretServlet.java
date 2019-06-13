@@ -17,17 +17,16 @@ public class InseretServlet extends HttpServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String[] s = request.getParameterValues("user");
-
         for (int i = 0; i <s.length ; i++) {
             if(s[i]==""){
                 s[i]=null;
             }
         }
-        Emp emp=new Emp(Integer.parseInt(s[0]),s[1],Integer.parseInt(s[2]),s[3],s[4],Double.parseDouble(s[5]),Double.parseDouble(s[6]),null);
+        Emp emp=new Emp(Integer.parseInt(s[0]),s[1],Integer.parseInt(s[2]),s[3],s[4],Double.parseDouble(s[5]),Double.parseDouble(s[6]),Integer.parseInt(s[7]));
         Service service=new ServiceImp();
         Integer i=service.insert(emp);
         System.out.println(i);
-        response.sendRedirect("/javaweb/jquery-02.html");
+        response.sendRedirect("/javaweb/EmpList.jsp");
 
 
     }

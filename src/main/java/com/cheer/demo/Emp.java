@@ -8,7 +8,7 @@ public class Emp {
     private String hiredate;
     private Double sal;
     private Double com;
-    private Dept deptno;
+    private Integer deptno;
 
 
 
@@ -30,7 +30,7 @@ public class Emp {
     public String getHiredate(){
         return hiredate;
     }
-    public Dept getDeptno(){
+    public Integer getDeptno(){
         return deptno;
     }
     public Double getSal(){
@@ -54,7 +54,7 @@ public class Emp {
     public void setHiredate(String hiredate){
         this.hiredate=hiredate;
     }
-    public void setDeptno(Dept deptno){
+    public void setDeptno(Integer deptno){
         this.deptno=deptno;
     }
     public void setSal(Double sal){
@@ -62,7 +62,7 @@ public class Emp {
     }
     public Emp(){}
 
-    public Emp(Integer empno, String ename, Integer mgr, String job, String hiredate, Double sal, Double com, Dept deptno) {
+    public Emp(Integer empno, String ename, Integer mgr, String job, String hiredate, Double sal, Double com, Integer deptno) {
         this.empno = empno;
         this.ename = ename;
         this.mgr = mgr;

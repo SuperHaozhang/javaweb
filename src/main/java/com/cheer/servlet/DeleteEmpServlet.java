@@ -22,7 +22,7 @@ public class DeleteEmpServlet extends HttpServlet {
         Service service=new ServiceImp();
         Integer i=service.delete(Integer.parseInt(empno));
         System.out.println(i);
-        response.sendRedirect("/javaweb/jquery-02.html");
+        response.sendRedirect("/javaweb/EmpList.jsp");
 
     }
 }

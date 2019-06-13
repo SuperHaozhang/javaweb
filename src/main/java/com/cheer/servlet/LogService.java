@@ -31,7 +31,7 @@ public class LogService extends HttpServlet {
             //resp.getWriter().write("登录成功");
             HttpSession session=req.getSession();
             session.setAttribute("name",uname);
-            resp.sendRedirect("/javaweb/jquery-02.html");
+            resp.sendRedirect("/javaweb/EmpList.jsp");
             return;
         }else{
             resp.sendRedirect("/javaweb/login.html");

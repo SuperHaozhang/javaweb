@@ -1,3 +1,11 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: 10216
+  Date: 2019/6/13
+  Time: 11:04
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -66,7 +74,12 @@
                         $tr1.append($th);
                         if(j==(header.length-1)){
                             $th.html("<a href='servlet/DeleteEmpServlet?empno="+response[i][header[0]]+"'>刪除</a>"+"|"
-                            +"<a href='https://www.baidu.com/s?wd="+response[i]+"'>修改</a>");
+                                +"<a href='/javaweb/update.jsp?empno="+response[i][header[0]]
+                                +"&ename="+response[i][header[1]]+"&job="+response[i][header[2]]
+                                +"&mgr="+response[i][header[3]]+"&hiredate="+response[i][header[4]]
+                                +"&sal="+response[i][header[5]]+"&com="+response[i][header[6]]
+                                +"&deptno="+response[i][header[7]]+"'>修改</a>");
+
                         }else{
                             $th.html(response[i][header[j]]);
                         }
@@ -76,30 +89,6 @@
         });
     });
 
-   /* //修改功能
-    function updateRow(btn){
-        //获取单元格对象
-        var bt=document.getElementById("btn");
-        bt.value="确定";
-        //获取行对象
-        var tr=btn.parentNode.parentNode;
-
-        //获取列对象
-        for (i=0;i<8;i++) {
-            var cell=tr.cells[i];
-            //修改单元格内容
-            cell.innerHTML="<input type='text' value='"+cell.innerHTML+"' onblur='updateRow2(this)'/>";
-
-        }
-        //bt.value="修改";
-    }
-
-    function updateRow2(inp){
-        //获取单元格对象
-        var cell=inp.parentNode;
-        //实现保存
-        cell.innerHTML=inp.value;
-    }*/
 </script>
 
 

@@ -121,4 +121,37 @@ public class ServiceImp implements Service {
         return i;
     }
 
+    @Override
+    public int update(Emp emp) {
+        String resource = "mybatis-config.xml";
+        InputStream inputStream = null;
+        SqlSession session = null;
+        int i=0;
+        try {
+
+            //1、获取SqlSessionFactory
+            inputStream = Resources.getResourceAsStream(resource);
+            SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+            //2.获取Sqlsession对象
+            session = sqlSessionFactory.openSession();
+            EmpMapper empMapper = session.getMapper(EmpMapper.class);
+            i=empMapper.update(emp);
+            session.commit();
+            LOGGER.info(emp);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+
+            try {
+                if (session != null) {
+                    session.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return i;
+    }
+
 }

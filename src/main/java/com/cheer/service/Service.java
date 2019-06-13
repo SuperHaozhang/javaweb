@@ -10,4 +10,6 @@ public interface Service {
      int delete(Integer empno);
 
      int insert(Emp e);
+
+     int update(Emp e);
 }
