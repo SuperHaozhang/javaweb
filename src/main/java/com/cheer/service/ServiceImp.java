@@ -2,6 +2,7 @@ package com.cheer.service;
 
 import com.cheer.Filter.FirstFilter;
 import com.cheer.demo.Emp;
+import com.cheer.demo.User;
 import com.cheer.mapper.EmpMapper;
 import com.google.gson.Gson;
 import org.apache.ibatis.io.Resources;
@@ -21,6 +22,43 @@ public class ServiceImp implements Service {
     public static void main(String[] args) {
         Service s = new ServiceImp();
         s.getEmpList();
+    }
+
+    @Override
+    public User checkUserLoginService(String uname, String pwd) {
+
+        String resource = "mybatis-config.xml";
+        InputStream inputStream = null;
+        SqlSession session = null;
+        User user=null;
+        try {
+
+            //1、获取SqlSessionFactory
+            inputStream = Resources.getResourceAsStream(resource);
+            SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+            //2.获取Sqlsession对象
+            session = sqlSessionFactory.openSession();
+            EmpMapper userDao = session.getMapper(EmpMapper.class);
+
+            user = userDao.checkUserLoginDao(uname,pwd);
+
+            LOGGER.info(user);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+
+            try {
+                if (session != null) {
+                    session.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return user;
+
+
     }
 
     @Override
@@ -54,6 +92,39 @@ public class ServiceImp implements Service {
             }
         }
         return list;
+    }
+
+    @Override
+    public Emp getEmp(Integer empno) {
+        String resource = "mybatis-config.xml";
+        InputStream inputStream = null;
+        SqlSession session = null;
+        Emp emp =null;
+        try {
+
+            //1、获取SqlSessionFactory
+            inputStream = Resources.getResourceAsStream(resource);
+            SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+            //2.获取Sqlsession对象
+            session = sqlSessionFactory.openSession();
+            EmpMapper empMapper = session.getMapper(EmpMapper.class);
+
+            emp = empMapper.getEmp(empno);
+            System.out.println(emp);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+
+            try {
+                if (session != null) {
+                    session.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return emp;
     }
 
     public int delete(Integer empno){

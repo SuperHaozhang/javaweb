@@ -39,27 +39,27 @@
         .row:nth-of-type(5) {
             margin-bottom: 100px;
         }
-        label {
-            display: inline-block;
-            width: 50px;
-            font-weight: bold;
-            margin-right: 10px;
-        }
-        .cell {
-            margin-right: 50px;
-        }
-        input {
-            height: 25px;
-            width: 250px;
-        }
-        button {
-            width: 150px;
-            height: 40px;
-            background-color: rgba(22, 155, 213, 1);
-            border-radius: 10px;
-            border: 0;
-            margin-left: 60px;
-        }
+    label {
+    display: inline-block;
+    width: 50px;
+    font-weight: bold;
+    margin-right: 10px;
+    }
+    .cell {
+    margin-right: 50px;
+    }
+    input {
+    height: 25px;
+    width: 250px;
+    }
+    button {
+    width: 150px;
+    height: 40px;
+    background-color: rgba(22, 155, 213, 1);
+    border-radius: 10px;
+    border: 0;
+    margin-left: 60px;
+    }
     </style>
 </head>
 <body>
@@ -105,9 +105,5 @@
 
 <hr>
 
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-<script >
-
-</script>
 </body>
 </html>

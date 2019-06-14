@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebFilter(filterName = "LoginStatusCheckFilter", urlPatterns = "/*", initParams = @WebInitParam(name = "ignoreURI",
-        value = "login.html;servlet/LogService;servlet/DeleteEmpServlet;servlet/UpdateServlet"))
+        value = "login.html;servlet/LogService;servlet/DeleteEmpServlet;servlet/UpdateServlet;register.html;servlet/UserRegisterServlet"))
 public class FirstFilter implements Filter {
     private static final Logger LOGGER = LogManager.getLogger(FirstFilter.class);
     private  String[] ignoreURI=null;
@@ -34,7 +34,7 @@ public class FirstFilter implements Filter {
         if (!ignoreRequest(uri)) {
             HttpSession session = request.getSession();
             // 从session里取出登录信息
-            Object username = session.getAttribute("name");
+            Object username = session.getAttribute("username");
             // 如果session里不存在该信息，则进行跳转到登录页面
             if (null == username) {
                 response.sendRedirect(request.getContextPath() + "/login.html");

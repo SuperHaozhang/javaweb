@@ -10,6 +10,13 @@
         select * from emp
     </select>
 
+
+    <select id="checkUserLoginDao" resultType="com.cheer.demo.User">
+        select * from t_user where uname=#{uname} and pwd=#{pwd}
+    </select>
+    <select id="getEmp" resultType="com.cheer.demo.Emp">
+        select * from emp where empno=#{empno}
+    </select>
     <!--useGeneratedKeys=“true”使用自增主键获取主键策略
 
    -->
@@ -86,4 +93,12 @@
             #{emp.com},#{emp.deptno.deptno})
         </foreach>
     </insert>
+
+
+    <insert id="insert1">
+    insert into user value(#{username}, #{password}, #{avatar})
+    </insert>
+    <select id="find2" resultType="com.cheer.demo.User2">
+    select * from user where username = #{username}
+    </select>
 </mapper>

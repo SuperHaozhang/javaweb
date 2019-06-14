@@ -35,12 +35,17 @@
         #user,#user1{
             margin-right: 20px;
         }
+        #avatar {
+            width: 45px;
+            height: 45px;
+            margin-right: 20px;
+        }
     </style>
 </head>
 <body>
 
 <div id="header">
-    <span id="user"></span><a href="servlet/OutLogin">点击退出</a>
+    <img id="avatar"><span id="user"></span><a href="servlet/OutLogin">点击退出</a>
     <span id="user1"></span><a href="/javaweb/inseret.jsp">点击添加</a>
 </div>
 
@@ -50,6 +55,18 @@
     let requestURL='servlet/EmpServlet';
 
     $(function () {
+        $.ajax({
+            url: "servlet/UserServlet",
+            dataType: "json",
+            method: "GET",
+            success: function (response) {
+                let username = response.username;
+                $("#user").text(username);
+                let avatar = response.avatar;
+                $("#avatar").attr("src", "upload/avatar/" + avatar)
+            }
+        });
+
         let header = ["empno", "ename", "job", "mgr", "hiredate", "sal", "com", "deptno", "操作"];
 
         $.ajax({
@@ -74,12 +91,15 @@
                         $tr1.append($th);
                         if(j==(header.length-1)){
                             $th.html("<a href='servlet/DeleteEmpServlet?empno="+response[i][header[0]]+"'>刪除</a>"+"|"
-                                +"<a href='/javaweb/update.jsp?empno="+response[i][header[0]]
-                                +"&ename="+response[i][header[1]]+"&job="+response[i][header[2]]
-                                +"&mgr="+response[i][header[3]]+"&hiredate="+response[i][header[4]]
-                                +"&sal="+response[i][header[5]]+"&com="+response[i][header[6]]
-                                +"&deptno="+response[i][header[7]]+"'>修改</a>");
+                                +"<a href='/javaweb/EmpDemo.html?empno="+response[i][header[0]]
+                                +"'>修改</a>");
 
+/*                            $th.html("<a href='servlet/DeleteEmpServlet?empno="+response[i][header[0]]+"'>刪除</a>"+"|"
+                                +"<a href='/javaweb/EmpDemo.html?empno="+response[i][header[0]]+"&ename="
+                                +response[i][header[1]]+"&job="+response[i][header[2]]
+                                +"&mgr"+response[i][header[3]]+"&hiredate"+response[i][header[4]]
+                                +"&sal"+response[i][header[5]]+"&com"+response[i][header[6]]
+                                +"&deptno"+response[i][header[7]]+"'>修改</a>");*/
                         }else{
                             $th.html(response[i][header[j]]);
                         }

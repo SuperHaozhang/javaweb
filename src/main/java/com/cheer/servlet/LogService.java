@@ -1,5 +1,11 @@
 package com.cheer.servlet;
 
+import com.cheer.demo.User;
+import com.cheer.service.Service;
+import com.cheer.service.ServiceImp;
+import com.cheer.service.UserService;
+import com.cheer.service.UserServiceImpl;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
@@ -15,27 +21,35 @@ public class LogService extends HttpServlet {
         //设置响应编码格式
         resp.setContentType("text/html;charset=utf-8");
         //获取请求信息
-        String uname=req.getParameter("uname");
-        //uname=new String(uname.getBytes("iso8859-1"),"utf-8");//使用String进行数据重新编码
-        String pwd=req.getParameter("pwd");
-        Cookie c = new Cookie("name",uname+pwd);
-        c.setMaxAge(60);
-        c.setPath("servlet/CookieServlet");
-        if("1".equals(req.getParameter("fav"))){
-            resp.addCookie(c);
-        }
-        System.out.println(uname+":"+pwd);
+        //获取请求信息
+        String username=req.getParameter("uname");
+        String password =req.getParameter("pwd");
 
-        //响应处理结果
-        if("zhangsan".equals(uname)&&"123".equals(pwd)){
-            //resp.getWriter().write("登录成功");
-            HttpSession session=req.getSession();
-            session.setAttribute("name",uname);
+        //处理请求信息
+        //校验
+        // 判断用户名和密码是否正确
+        UserService userService = new UserServiceImpl();
+        if(userService.checkLogin(username, password)){
+            //获取session对象
+            HttpSession hs=req.getSession();
+            //将用户数据存储到session对象中
+            hs.setAttribute("username",username);
+            //System.out.println(username);
+            //重定向
             resp.sendRedirect("/javaweb/EmpList.jsp");
             return;
         }else{
+            //获取session对象
+            HttpSession hs=req.getSession();
+            hs.setAttribute("flag",0);
             resp.sendRedirect("/javaweb/login.html");
+            //添加request中
+
+            //req.setAttribute("flag",0);
+            //请求转发
+            //req.getRequestDispatcher("/manager/../../login.jsp").forward(req,resp);
             return;
+
         }
     }
 }
