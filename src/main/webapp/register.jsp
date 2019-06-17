@@ -1,3 +1,12 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: 10216
+  Date: 2019/6/16
+  Time: 21:58
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,7 +71,7 @@
     <form action="servlet/UserRegisterServlet" method="post" enctype="multipart/form-data">
         <div class="row">
             <div class="cell">
-                <label for="username">Username</label><input type="text" name="username" id="username">
+                <label for="username">Username</label><input type="text" name="username" id="username" value="">
             </div>
             <div class="cell">
                 <label for="password">Password</label><input type="password" name="password" id="password">
@@ -81,6 +90,12 @@
             <button type="submit">Register</button>
         </div>
     </form>
+</div>
+
+<div>
+    <c:forEach items="${usernamelist}" var="s">
+        ${s.username}
+    </c:forEach>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

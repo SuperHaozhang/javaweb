@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Title</title>
@@ -67,34 +68,34 @@
     <div id="top">
         <div class="row">
             <div class="cell">
-                <label for="empno">empno</label><input type="text" name="empno" id="empno" value="<%=request.getParameter("empno")%>">
+                <label for="empno">empno</label><input type="text" name="empno" id="empno" value="${emp.empno}">
             </div>
             <div class="cell">
-                <label for="ename">ename</label><input type="text" name="ename" id="ename" value="<%=request.getParameter("ename")%>">
-            </div>
-        </div>
-        <div class="row">
-            <div class="cell">
-                <label for="mgr">mgr</label><input type="text" name="mgr" id="mgr" value="<%=request.getParameter("mgr")%>">
-            </div>
-            <div class="cell">
-                <label for="job">job</label><input type="text" name="job" id="job" value="<%=request.getParameter("job")%>">
+                <label for="ename">ename</label><input type="text" name="ename" id="ename" value="${emp.ename}">
             </div>
         </div>
         <div class="row">
             <div class="cell">
-                <label for="hiredate">hire</label><input type="text" name="hiredate" id="hiredate" value="<%=request.getParameter("hiredate")%>">
+                <label for="mgr">mgr</label><input type="text" name="mgr" id="mgr" value="${emp.mgr}">
             </div>
             <div class="cell">
-                <label for="sal">sal</label><input type="text" name="sal" id="sal" value="<%=request.getParameter("sal")%>">
+                <label for="job">job</label><input type="text" name="job" id="job" value="${emp.job}">
             </div>
         </div>
         <div class="row">
             <div class="cell">
-                <label for="com">com</label><input type="text" name="com" id="com" value="<%=request.getParameter("com")%>">
+                <label for="hiredate">hire</label><input type="text" name="hiredate" id="hiredate" value="${emp.hiredate}">
             </div>
             <div class="cell">
-                <label for="deptno">deptno</label><input type="text" name="deptno" id="deptno" value="<%=request.getParameter("deptno")%>">
+                <label for="sal">sal</label><input type="text" name="sal" id="sal" value="${emp.sal}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="cell">
+                <label for="com">com</label><input type="text" name="com" id="com" value="${emp.com}">
+            </div>
+            <div class="cell">
+                <label for="deptno">deptno</label><input type="text" name="deptno" id="deptno" value="${emp.deptno}">
             </div>
         </div>
         <div class="row">

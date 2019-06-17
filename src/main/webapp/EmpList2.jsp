@@ -1,12 +1,12 @@
 <%--
   Created by IntelliJ IDEA.
   User: 10216
-  Date: 2019/6/13
-  Time: 11:04
+  Date: 2019/6/17
+  Time: 8:51
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,9 +45,39 @@
 <body>
 
 <div id="header">
-    <img id="avatar"><span id="user"></span><a href="servlet/OutLogin">点击退出</a>
+    <img id="avatar"><span id="user"></span><a href="OutLogin">点击退出</a>
     <span id="user1"></span><a href="/javaweb/inseret.jsp">点击添加</a>
 </div>
+
+<div>
+    <table border="1px">
+        <tr>
+            <th>empno</th>
+            <th>ename</th>
+            <th>job</th>
+            <th>mgr</th>
+            <th>hiredate</th>
+            <th>sal</th>
+            <th>com</th>
+            <th>deptno</th>
+            <th>操作</th>
+        </tr>
+        <c:forEach items="${emplist}" var="s">
+            <tr>
+                <td>${s.empno}</td>
+                <td>${s.ename}</td>
+                <td>${s.job}</td>
+                <td>${s.mgr}</td>
+                <td>${s.hiredate}</td>
+                <td>${s.sal}</td>
+                <td>${s.com}</td>
+                <td>${s.deptno}</td>
+                <td><a href="/javaweb/DeleteEmpServlet?empno=${s.empno}">删除</a>|<a href="/javaweb/servlet/EmpDemo02?empno=${s.empno}">修改</a></td>
+            </tr>
+        </c:forEach>
+    </table>
+</div>
+
 
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script>
@@ -64,40 +94,6 @@
                 $("#user").text(username);
                 let avatar = response.avatar;
                 $("#avatar").attr("src", "upload/avatar/" + avatar)
-            }
-        });
-
-        let header = ["empno", "ename", "job", "mgr", "hiredate", "sal", "com", "deptno", "操作"];
-
-        $.ajax({
-            url: requestURL,
-            method:'GET',
-            dataType:'json',
-            success:function (response) {
-                let $table=$("<table></table>");
-                $('body').append($table);
-                let $tr=$("<tr></tr>");
-                $("table").append($tr);
-                for (let i = 0; i <header.length; i++) {
-                    let $th= $("<th></th>");
-                    $tr.append($th);
-                    $th.html(header[i]);
-                }
-                for (let i = 0; i < response.length; i++) {
-                    let $tr1=$("<tr></tr>");
-                    $("table").append($tr1);
-                    for (let j = 0; j < header.length; j++) {
-                        let $th= $("<td></td>");
-                        $tr1.append($th);
-                        if(j==(header.length-1)){
-                            $th.html("<a href='servlet/DeleteEmpServlet?empno="+response[i][header[0]]+"'>刪除</a>"+"|"
-                                +"<a href='/javaweb/EmpDemo.html?empno="+response[i][header[0]]
-                                +"'>修改</a>");
-                        }else{
-                            $th.html(response[i][header[j]]);
-                        }
-                    }
-                }
             }
         });
     });

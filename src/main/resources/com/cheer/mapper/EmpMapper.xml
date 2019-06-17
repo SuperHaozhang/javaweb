@@ -101,4 +101,8 @@
     <select id="find2" resultType="com.cheer.demo.User2">
     select * from user where username = #{username}
     </select>
+
+    <select id="getUserList" resultType="com.cheer.demo.User2">
+        select * from user
+    </select>
 </mapper>

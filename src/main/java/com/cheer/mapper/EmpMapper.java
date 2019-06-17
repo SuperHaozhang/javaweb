@@ -37,4 +37,6 @@ public interface EmpMapper {
     int insert1(User2 user);
 
     User2 find2(@Param("username") String username);
+
+    List<User2> getUserList();
 }

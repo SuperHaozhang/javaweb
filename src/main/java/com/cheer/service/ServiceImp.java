@@ -77,7 +77,7 @@ public class ServiceImp implements Service {
             EmpMapper empMapper = session.getMapper(EmpMapper.class);
 
             list = empMapper.getList();
-            System.out.println(list);
+            //System.out.println(list);
 
         } catch (IOException e) {
             e.printStackTrace();

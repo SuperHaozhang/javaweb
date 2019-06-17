@@ -34,9 +34,10 @@ public class LogService extends HttpServlet {
             HttpSession hs=req.getSession();
             //将用户数据存储到session对象中
             hs.setAttribute("username",username);
-            //System.out.println(username);
+
             //重定向
-            resp.sendRedirect("/javaweb/EmpList.jsp");
+            //resp.sendRedirect("/javaweb/EmpList.jsp");
+            resp.sendRedirect("/javaweb/servlet/EmpListServlet");
             return;
         }else{
             //获取session对象

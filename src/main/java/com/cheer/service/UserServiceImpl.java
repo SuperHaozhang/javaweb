@@ -1,5 +1,6 @@
 package com.cheer.service;
 
+import com.cheer.demo.Emp;
 import com.cheer.demo.User;
 import com.cheer.demo.User2;
 import com.cheer.mapper.EmpMapper;
@@ -13,9 +14,19 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 public class UserServiceImpl implements UserService {
     private static final Logger LOGGER = LogManager.getLogger(UserServiceImpl.class);
+
+/*
+    public static void main(String[] args) {
+        UserServiceImpl u = new UserServiceImpl();
+        List<User2> list = u.getUserList();
+        System.out.println(list);
+    }
+*/
+
     @Override
     public void insert(User2 user) throws Exception{
         String resource = "mybatis-config.xml";
@@ -119,5 +130,38 @@ public class UserServiceImpl implements UserService {
             }
         }
         return user;
+    }
+
+    @Override
+    public List<User2> getUserList() {
+        String resource = "mybatis-config.xml";
+        InputStream inputStream = null;
+        SqlSession session = null;
+        List<User2> list =null;
+        try {
+
+            //1、获取SqlSessionFactory
+            inputStream = Resources.getResourceAsStream(resource);
+            SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+            //2.获取Sqlsession对象
+            session = sqlSessionFactory.openSession();
+            EmpMapper empMapper = session.getMapper(EmpMapper.class);
+
+            list = empMapper.getUserList();
+            System.out.println(list);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+
+            try {
+                if (session != null) {
+                    session.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
     }
 }
